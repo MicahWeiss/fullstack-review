@@ -12,9 +12,14 @@ app.post('/repos', function (req, res) {//once username is posted to server, use
   // This route should take the github username provided
   console.log('Post to /repos received');
   console.log('Req body.term:', req.body.term);
-  getReposByUsername(req.body.term);
+  cb = ()=>{console.log('==CALLBACK INVOKED==')}
+  getReposByUsername(req.body.term, cb);
+  
+
+
   res.status(201);
-  res.send('response from server');
+  res.send('Placeholder response from server');
+
   // and get the repo information from the github API, then
   // save the repo information in the database
 });

@@ -3,7 +3,7 @@ const config = require('../config.js');
 const {save} = require('../database/index.js'); //bringing in save function for database index
 
 
-let getReposByUsername = (term) => { 
+let getReposByUsername = (term, cb) => { 
   console.log('term in getReposbyUsername:', term);
   // The options object has been provided to help you out, 
   // but you'll have to fill in the URL
@@ -19,10 +19,11 @@ let getReposByUsername = (term) => {
   function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
       var info = JSON.parse(body);
-      save(info);
+      save(info, cb);
     }
   }
    
   request(options, callback);
+
 }
 module.exports.getReposByUsername = getReposByUsername;
