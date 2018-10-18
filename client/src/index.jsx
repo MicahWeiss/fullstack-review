@@ -5,8 +5,6 @@ index search (possibly needs api tie)
 repolist needs repolist entry
 
 Issues:
-Cannot read property 'setState' of undefined on handle change
-adding .bind to .search in Search.jsx removes error but search button only says 'was searched' why can I not see $terms
 */
 
 
@@ -26,8 +24,33 @@ class App extends React.Component {
   }
 
   search (term) { //re-render on event based on search criteria
-    console.log(`${term} was searched`);
-    // Needs to send query term to Server file
+    console.log(`Searching for: ${term}`);
+    // Needs to send query term to Server/index
+
+    // use jQuery's ajax method to send a POST request to /repos
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:1128/repos",
+      data: {term},
+      success: (term)=>{
+        console.log(term);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+
+    // axios.post('/repos', {
+    //   username: term
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
+
   }
 
   render () {

@@ -6,7 +6,8 @@ class Search extends React.Component {
     this.state = {
       term: ''
     }
-    this.search.bind(this);
+    this.search = this.search.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   onChange (e) {
@@ -16,7 +17,6 @@ class Search extends React.Component {
   }
 
   search() {
-    console.log('this.props.onSearch', this.props.onSearch);
     this.props.onSearch(this.state.term);
   }
 
@@ -26,7 +26,7 @@ class Search extends React.Component {
       Enter a github username: <input value={this.state.term} onChange={this.onChange}/>       
       <button onClick={this.search}> Add Repos </button>
     </div>) 
-  } //adding bind this to .search in render gets rid of error
+  } 
 }
 
 export default Search;
